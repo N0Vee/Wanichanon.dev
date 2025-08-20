@@ -1,0 +1,170 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+export default function Navigation() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  const navItems = [
+    { href: '#home', label: 'Home', icon: 'fas fa-home' },
+    { href: '#about', label: 'About', icon: 'fas fa-user' },
+    { href: '#skills', label: 'Skills', icon: 'fas fa-code' },
+    { href: '#education', label: 'Education', icon: 'fas fa-graduation-cap' },
+    { href: '#projects', label: 'Projects', icon: 'fas fa-folder-open' },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    const handleSectionChange = () => {
+      const sections = ['home', 'about', 'skills', 'education', 'projects'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (current) {
+        setActiveSection(current);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleSectionChange);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleSectionChange);
+    };
+  }, []);
+
+  const scrollToSection = (href) => {
+    const element = document.getElementById(href.substring(1));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-gray-900/90 backdrop-blur-md border-b border-purple-500/30 shadow-lg shadow-purple-500/10' 
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="text-2xl font-bold"
+          >
+            <button 
+              onClick={() => scrollToSection('#home')}
+              className="text-white hover:text-purple-400 transition-colors duration-300"
+            >
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Wanichanon.dev
+              </span>
+            </button>
+          </motion.div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item) => (
+              <motion.button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  activeSection === item.href.substring(1)
+                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                }`}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="flex items-center space-x-2">
+                  <i className={item.icon} />
+                  <span>{item.label}</span>
+                </span>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Resume Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <motion.button
+              onClick={() => window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <i className="fas fa-download mr-2" />
+              Resume
+            </motion.button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden text-white hover:text-purple-400 transition-colors duration-300"
+          >
+            <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`} />
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ 
+            opacity: isMobileMenuOpen ? 1 : 0, 
+            height: isMobileMenuOpen ? 'auto' : 0 
+          }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden overflow-hidden bg-gray-900/95 backdrop-blur-md rounded-b-2xl border-b border-purple-500/30"
+        >
+          <div className="py-4 space-y-2">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  activeSection === item.href.substring(1)
+                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <span className="flex items-center space-x-3">
+                  <i className={item.icon} />
+                  <span>{item.label}</span>
+                </span>
+              </button>
+            ))}
+            
+            <div className="px-4 py-2 border-t border-purple-500/30 mt-4">
+              <button
+                onClick={() => window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-3 rounded-lg font-medium flex items-center justify-center space-x-2"
+              >
+                <i className="fas fa-download" />
+                <span>Resume</span>
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.nav>
+  );
+}
