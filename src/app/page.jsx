@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main className="bg-gradient-to-br from-gray-900 to-black">
+      <main>
         <section id="home">
           <HeroSection />
         </section>

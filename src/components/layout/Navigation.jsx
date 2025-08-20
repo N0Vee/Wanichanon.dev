@@ -60,7 +60,7 @@ export default function Navigation() {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-gray-900/90 backdrop-blur-md border-b border-purple-500/30 shadow-lg shadow-purple-500/10' 
+          ? 'glass border-b border-white/10 shadow-lg shadow-blue-500/5' 
           : 'bg-transparent'
       }`}
     >
@@ -73,9 +73,9 @@ export default function Navigation() {
           >
             <button 
               onClick={() => scrollToSection('#home')}
-              className="text-white hover:text-purple-400 transition-colors duration-300"
+              className="text-white hover:text-blue-400 transition-colors duration-300"
             >
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="gradient-text">
                 Wanichanon.dev
               </span>
             </button>
@@ -89,8 +89,8 @@ export default function Navigation() {
                 onClick={() => scrollToSection(item.href)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   activeSection === item.href.substring(1)
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    ? 'glass-card text-blue-300 border border-white/20'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5 glass-hover'
                 }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -107,19 +107,22 @@ export default function Navigation() {
           <div className="hidden md:flex items-center space-x-4">
             <motion.button
               onClick={() => window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+              className="relative overflow-hidden glass-card px-6 py-2 rounded-full font-medium text-white border border-white/20 hover:border-blue-400/50 transition-all duration-300 group"
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <i className="fas fa-download mr-2" />
-              Resume
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative z-10 flex items-center space-x-2">
+                <i className="fas fa-download" />
+                <span>Resume</span>
+              </span>
             </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white hover:text-purple-400 transition-colors duration-300"
+            className="md:hidden text-white hover:text-blue-400 transition-colors duration-300"
           >
             <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`} />
           </button>
@@ -133,7 +136,7 @@ export default function Navigation() {
             height: isMobileMenuOpen ? 'auto' : 0 
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden bg-gray-900/95 backdrop-blur-md rounded-b-2xl border-b border-purple-500/30"
+          className="md:hidden overflow-hidden glass-card rounded-b-2xl border-b border-white/10"
         >
           <div className="py-4 space-y-2">
             {navItems.map((item) => (
@@ -142,8 +145,8 @@ export default function Navigation() {
                 onClick={() => scrollToSection(item.href)}
                 className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                   activeSection === item.href.substring(1)
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    ? 'glass-card text-blue-300 border border-white/20'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5 glass-hover'
                 }`}
               >
                 <span className="flex items-center space-x-3">
@@ -153,10 +156,10 @@ export default function Navigation() {
               </button>
             ))}
             
-            <div className="px-4 py-2 border-t border-purple-500/30 mt-4">
+            <div className="px-4 py-2 border-t border-white/10 mt-4">
               <button
                 onClick={() => window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-3 rounded-lg font-medium flex items-center justify-center space-x-2"
+                className="w-full glass-card border border-white/20 hover:border-blue-400/50 text-white px-4 py-3 rounded-lg font-medium flex items-center justify-center space-x-2 transition-all duration-300"
               >
                 <i className="fas fa-download" />
                 <span>Resume</span>
