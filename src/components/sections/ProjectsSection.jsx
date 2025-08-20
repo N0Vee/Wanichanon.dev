@@ -16,7 +16,7 @@ export default function ProjectsSection() {
       category: "Full-Stack",
       image: "/images/projects_img/UniversityManagement.png",
       github: "https://github.com/N0Vee/University-Admin-Dashboard",
-      tech: ["Next.js", "Supabase", "TypeScript", "TailwindCSS"],
+      tech: ["Next.js", "Supabase", "JavaScript", "TailwindCSS"],
       description: "Comprehensive SaaS dashboard for university management with role-based access control, student management, and announcement system."
     },
     {
@@ -25,16 +25,16 @@ export default function ProjectsSection() {
       category: "Full-Stack",
       image: "/images/projects_img/InkSpace.png",
       github: "https://github.com/N0Vee/InkSpace",
-      tech: ["Next.js", "Editor.js", "AI Integration", "SCSS"],
+      tech: ["Next.js", "SCSS"],
       description: "Sophisticated blog platform with content management through Editor.js and AI-powered topic generation using Gemini."
     },
     {
       id: 3,
-      title: "Portfolio Website",
+      title: "Wanichanon.dev",
       category: "Frontend",
       image: "/images/projects_img/WebPortfolio.png",
-      github: "https://github.com/N0Vee/Portfolio-project",
-      tech: ["React", "Framer Motion", "Bulma", "JavaScript"],
+      github: "https://github.com/N0Vee/Wanichanon.dev",
+      tech: ["Next.js","TailwindCSS", "Framer Motion", "JavaScript"],
       description: "Responsive personal portfolio with clean UI design and smooth animations for enhanced visual experience."
     },
     {
@@ -52,7 +52,7 @@ export default function ProjectsSection() {
       category: "Frontend",
       image: "/images/projects_img/weatherforcast.png",
       github: "https://github.com/N0Vee/Weather-Forecast-Website",
-      tech: ["JavaScript", "Weather API", "CSS3", "HTML5"],
+      tech: ["Next.js","JavaScript", "Weather API"],
       description: "Real-time weather application with location-based forecasting and interactive weather data visualization."
     }
   ];

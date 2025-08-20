@@ -15,7 +15,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="min-h-screen relative overflow-hidden flex items-center justify-center">      
+    <section className="min-h-screen relative overflow-hidden flex items-center justify-center">
       <div className="relative z-10 container mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
           {/* Content */}
@@ -36,8 +36,8 @@ export default function HeroSection() {
                   👋 Hello, I'm
                 </span>
               </motion.div>
-              
-              <motion.h1 
+
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
@@ -47,9 +47,6 @@ export default function HeroSection() {
                   Wanichanon
                 </span>
                 <br />
-                <span className="text-slate-200 text-5xl md:text-7xl">
-                  Saelee
-                </span>
               </motion.h1>
 
               <motion.div
@@ -78,9 +75,6 @@ export default function HeroSection() {
                     <p className="text-slate-300 text-lg leading-relaxed italic">
                       "Simplicity is the ultimate sophistication."
                     </p>
-                    <p className="text-slate-500 text-sm mt-3">
-                      — Leonardo da Vinci
-                    </p>
                   </div>
                 </div>
               </div>
@@ -93,19 +87,6 @@ export default function HeroSection() {
               transition={{ delay: 1.3, duration: 0.8 }}
               className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-8"
             >
-              {/* Resume Button */}
-              <motion.button
-                onClick={() => typeof window !== 'undefined' && window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
-                className="group relative glass-card px-8 py-4 rounded-full text-white font-medium border border-white/20 hover:border-blue-400/50 transition-all duration-300"
-                whileHover={{ y: -2, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative z-10 flex items-center space-x-3">
-                  <i className="fas fa-download" />
-                  <span>Download Resume</span>
-                </span>
-              </motion.button>
 
               {/* Social Links */}
               <div className="flex items-center space-x-4">
@@ -151,7 +132,7 @@ export default function HeroSection() {
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                
+
                 {/* Floating accent rings */}
                 <div className="absolute top-0 right-0 w-16 h-16 border border-blue-400/30 rounded-full animate-glow" />
                 <div className="absolute bottom-4 left-0 w-12 h-12 border border-cyan-400/30 rounded-full animate-glow" style={{ animationDelay: '1s' }} />
@@ -170,7 +151,7 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <div className="glass-card p-3 rounded-full border border-white/10 group cursor-pointer">
-          <motion.i 
+          <motion.i
             className="fas fa-chevron-down text-slate-400 group-hover:text-white transition-colors duration-300"
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

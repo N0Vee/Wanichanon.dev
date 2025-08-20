@@ -58,9 +58,9 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'glass border-b border-white/10 shadow-lg shadow-blue-500/5' 
+          ? 'backdrop-blur-xl bg-black/20 border-white/5' 
           : 'bg-transparent'
       }`}
     >
@@ -87,10 +87,10 @@ export default function Navigation() {
               <motion.button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-out border-none ${
                   activeSection === item.href.substring(1)
-                    ? 'glass-card text-blue-300 border border-white/20'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5 glass-hover'
+                    ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30 backdrop-blur-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -106,14 +106,14 @@ export default function Navigation() {
           {/* Resume Button */}
           <div className="hidden md:flex items-center space-x-4">
             <motion.button
-              onClick={() => window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
-              className="relative overflow-hidden glass-card px-6 py-2 rounded-full font-medium text-white border border-white/20 hover:border-blue-400/50 transition-all duration-300 group"
+              onClick={() => window.open('/images/Resume(Eng).pdf')}
+              className="relative overflow-hidden backdrop-blur-sm bg-blue-500/20 px-6 py-2 rounded-full font-medium text-white border border-blue-400/30 hover:border-blue-400/50 hover:bg-blue-500/30 transition-all duration-500 ease-out group"
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <span className="relative z-10 flex items-center space-x-2">
-                <i className="fas fa-download" />
+                <i className="fas fa-paperclip" />
                 <span>Resume</span>
               </span>
             </motion.button>
@@ -136,17 +136,17 @@ export default function Navigation() {
             height: isMobileMenuOpen ? 'auto' : 0 
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden glass-card rounded-b-2xl border-b border-white/10"
+          className="md:hidden overflow-hidden backdrop-blur-sm bg-black/20 rounded-b-2xl border-b border-white/5"
         >
           <div className="py-4 space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-500 ease-out ${
                   activeSection === item.href.substring(1)
-                    ? 'glass-card text-blue-300 border border-white/20'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5 glass-hover'
+                    ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30 backdrop-blur-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
                 <span className="flex items-center space-x-3">
@@ -156,10 +156,10 @@ export default function Navigation() {
               </button>
             ))}
             
-            <div className="px-4 py-2 border-t border-white/10 mt-4">
+            <div className="px-4 py-2 border-t border-white/5 mt-4">
               <button
                 onClick={() => window.open('/images/Wanichanon_SaeLee_Resume.pdf')}
-                className="w-full glass-card border border-white/20 hover:border-blue-400/50 text-white px-4 py-3 rounded-lg font-medium flex items-center justify-center space-x-2 transition-all duration-300"
+                className="w-full backdrop-blur-sm bg-blue-500/20 border border-blue-400/30 hover:border-blue-400/50 hover:bg-blue-500/30 text-white px-4 py-3 rounded-lg font-medium flex items-center justify-center space-x-2 transition-all duration-500 ease-out"
               >
                 <i className="fas fa-download" />
                 <span>Resume</span>

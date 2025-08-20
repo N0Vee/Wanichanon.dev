@@ -150,12 +150,8 @@ export default function Footer() {
               © {currentYear} Wanichanon Saelee. All rights reserved.
             </p>
             
-            <div className="flex items-center space-x-6 text-sm text-slate-400">
+            <div className="flex items-center space-x-2 text-sm text-slate-400">
               <span>Built with</span>
-              <div className="flex items-center space-x-2">
-                <i className="fab fa-react text-blue-400" />
-                <span>React</span>
-              </div>
               <div className="flex items-center space-x-2">
                 <i className="fas fa-heart text-red-400" />
                 <span>& passion</span>

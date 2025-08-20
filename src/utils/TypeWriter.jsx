@@ -2,43 +2,48 @@
 
 import { useState, useEffect } from 'react';
 
-const TypeWriter = ({ className = "text-2xl md:text-4xl font-bold text-white" }) => {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
+const TypeWriter = ({ className = "text-2xl md:text-4xl font-bold text-white", speed = 100, pause = 1200, deleteSpeed = 50 }) => {
   const text = "Full-Stack Developer.";
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    if (currentIndex < text.length) {
-      const timer = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, 100);
-      return () => clearTimeout(timer);
+    let interval;
+    if (isTyping) {
+      if (displayText.length < text.length) {
+        interval = setInterval(() => {
+          setDisplayText(prev => prev + text.charAt(prev.length));
+        }, speed);
+      } else {
+        setIsComplete(true);
+        interval = setTimeout(() => {
+          setIsTyping(false);
+        }, pause);
+      }
     } else {
-      setIsComplete(true);
+      if (displayText.length > 0) {
+        interval = setInterval(() => {
+          setDisplayText(prev => prev.slice(0, -1));
+        }, deleteSpeed);
+      } else {
+        setIsComplete(false);
+        interval = setTimeout(() => {
+          setIsTyping(true);
+        }, 400);
+      }
     }
-  }, [currentIndex, text]);
+    return () => clearInterval(interval) || clearTimeout(interval);
+  }, [displayText, isTyping, speed, pause, deleteSpeed, text.length]);
 
   return (
     <h1 className={className}>
       {displayText.split('').map((char, i) => (
-        <span 
-          key={i} 
-          className={`${
-            char === '-' 
-              ? 'text-purple-400' 
-              : i % 3 === 0 
-                ? 'text-white' 
-                : i % 3 === 1 
-                  ? 'text-purple-300' 
-                  : 'text-pink-300'
-          }`}
-        >
+        <span key={i} className="text-white">
           {char}
         </span>
       ))}
-      <span className={`animate-pulse ${isComplete ? 'opacity-100' : 'opacity-100'}`}>|</span>
+      <span className={`animate-pulse text-white ${isComplete ? 'opacity-100' : 'opacity-100'}`}>|</span>
     </h1>
   );
 };

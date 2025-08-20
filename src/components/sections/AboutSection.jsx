@@ -89,8 +89,7 @@ export default function AboutSection() {
           >
             <div>
               <h3 className="text-3xl font-bold text-white mb-6">
-                Full Stack Developer & 
-                <span className="gradient-text"> Problem Solver</span>
+                Full Stack Developer
               </h3>
               
               <div className="space-y-4 text-slate-400 text-lg leading-relaxed">
@@ -109,27 +108,6 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { number: "2+", label: "Years Experience" },
-                { number: "15+", label: "Projects Completed" },
-                { number: "10+", label: "Technologies Mastered" },
-                { number: "100%", label: "Client Satisfaction" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                  className="glass-card p-4 rounded-xl border border-white/10 text-center"
-                >
-                  <div className="gradient-text text-2xl font-bold">{stat.number}</div>
-                  <div className="text-slate-400 text-sm mt-1">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-
             {/* Skills Pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -140,8 +118,7 @@ export default function AboutSection() {
               <h4 className="text-xl font-semibold text-white mb-4">Core Technologies</h4>
               <div className="flex flex-wrap gap-3">
                 {[
-                  "React", "Next.js", "TypeScript", "Node.js", 
-                  "Python", "PostgreSQL", "MongoDB", "TailwindCSS"
+                  "Next.js","React","TailwindCSS", "Node.js"
                 ].map((skill, index) => (
                   <span
                     key={index}
@@ -159,19 +136,7 @@ export default function AboutSection() {
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 1.2 }}
               className="flex items-center space-x-4"
-            >
-              <motion.button
-                className="relative glass-card px-6 py-3 rounded-full border border-white/20 hover:border-blue-400/50 text-white font-medium transition-all duration-300 group"
-                whileHover={{ y: -2, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative z-10 flex items-center space-x-2">
-                  <i className="fas fa-download" />
-                  <span>Download CV</span>
-                </span>
-              </motion.button>
-              
+            > 
               <motion.a
                 href="mailto:wanichanon.work@gmail.com"
                 className="text-slate-400 hover:text-white transition-colors duration-300 flex items-center space-x-2"
