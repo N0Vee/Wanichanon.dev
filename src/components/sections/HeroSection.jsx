@@ -1,17 +1,28 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import TypeWriter from '@/utils/TypeWriter';
 
+const socialLinks = [
+  { href: "https://github.com/N0Vee", icon: "fab fa-github", label: "GitHub", color: "hover:text-gray-400" },
+  { href: "https://www.linkedin.com/in/wanichanon-saelee-0b2717252/", icon: "fab fa-linkedin", label: "LinkedIn", color: "hover:text-blue-400" },
+  { href: "https://discordapp.com/users/Nveee#9120", icon: "fab fa-discord", label: "Discord", color: "hover:text-indigo-400" },
+  { href: "mailto:wanichanon.work@gmail.com", icon: "fas fa-envelope", label: "Email", color: "hover:text-emerald-400" }
+];
+
 export default function HeroSection() {
-  const [isClient, setIsClient] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
     setIsLoaded(true);
+  }, []);
+
+  const handleResumeClick = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      window.open('/images/Resume(Eng).pdf', '_blank');
+    }
   }, []);
 
   return (
@@ -90,14 +101,9 @@ export default function HeroSection() {
 
               {/* Social Links */}
               <div className="flex items-center space-x-4">
-                {[
-                  { href: "https://github.com/N0Vee", icon: "fab fa-github", label: "GitHub", color: "hover:text-gray-400" },
-                  { href: "https://www.linkedin.com/in/wanichanon-saelee-0b2717252/", icon: "fab fa-linkedin", label: "LinkedIn", color: "hover:text-blue-400" },
-                  { href: "https://discordapp.com/users/Nveee#9120", icon: "fab fa-discord", label: "Discord", color: "hover:text-indigo-400" },
-                  { href: "mailto:wanichanon.work@gmail.com", icon: "fas fa-envelope", label: "Email", color: "hover:text-emerald-400" }
-                ].map((social, index) => (
+                {socialLinks.map((social, index) => (
                   <motion.a
-                    key={index}
+                    key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"

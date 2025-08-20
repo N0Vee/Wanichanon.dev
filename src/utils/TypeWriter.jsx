@@ -1,49 +1,60 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
-const TypeWriter = ({ className = "text-2xl md:text-4xl font-bold text-white", speed = 100, pause = 1200, deleteSpeed = 50 }) => {
-  const text = "Full-Stack Developer.";
+const TypeWriter = ({ 
+  className = "text-2xl md:text-4xl font-bold text-white", 
+  speed = 100, 
+  pause = 1200, 
+  deleteSpeed = 50 
+}) => {
+  const text = useMemo(() => "Full-Stack Developer.", []);
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
-  const [isComplete, setIsComplete] = useState(false);
+
+  const resetCycle = useCallback(() => {
+    setDisplayText('');
+    setIsTyping(true);
+  }, []);
 
   useEffect(() => {
-    let interval;
-    if (isTyping) {
+    let timeoutId;
+
+    const typeText = () => {
       if (displayText.length < text.length) {
-        interval = setInterval(() => {
-          setDisplayText(prev => prev + text.charAt(prev.length));
+        timeoutId = setTimeout(() => {
+          setDisplayText(prev => text.substring(0, prev.length + 1));
         }, speed);
       } else {
-        setIsComplete(true);
-        interval = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setIsTyping(false);
         }, pause);
       }
-    } else {
+    };
+
+    const deleteText = () => {
       if (displayText.length > 0) {
-        interval = setInterval(() => {
+        timeoutId = setTimeout(() => {
           setDisplayText(prev => prev.slice(0, -1));
         }, deleteSpeed);
       } else {
-        setIsComplete(false);
-        interval = setTimeout(() => {
-          setIsTyping(true);
-        }, 400);
+        timeoutId = setTimeout(resetCycle, 400);
       }
+    };
+
+    if (isTyping) {
+      typeText();
+    } else {
+      deleteText();
     }
-    return () => clearInterval(interval) || clearTimeout(interval);
-  }, [displayText, isTyping, speed, pause, deleteSpeed, text.length]);
+
+    return () => clearTimeout(timeoutId);
+  }, [displayText, isTyping, speed, pause, deleteSpeed, text, resetCycle]);
 
   return (
     <h1 className={className}>
-      {displayText.split('').map((char, i) => (
-        <span key={i} className="text-white">
-          {char}
-        </span>
-      ))}
-      <span className={`animate-pulse text-white ${isComplete ? 'opacity-100' : 'opacity-100'}`}>|</span>
+      {displayText}
+      <span className="animate-pulse text-white">|</span>
     </h1>
   );
 };

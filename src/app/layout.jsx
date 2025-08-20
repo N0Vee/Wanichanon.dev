@@ -5,16 +5,40 @@ import Script from 'next/script';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata = {
-  title: "Wanichanon.dev",
+  title: "Wanichanon.dev - Full-Stack Developer",
   description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
+  keywords: "full-stack developer, React, Next.js, web development, portfolio, JavaScript, TypeScript",
+  authors: [{ name: "Wanichanon Saelee" }],
+  creator: "Wanichanon Saelee",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://wanichanon.dev",
+    title: "Wanichanon.dev - Full-Stack Developer",
+    description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
+    siteName: "Wanichanon.dev",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wanichanon.dev - Full-Stack Developer",
+    description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -52,7 +76,10 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" />
+        <Script 
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" 
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

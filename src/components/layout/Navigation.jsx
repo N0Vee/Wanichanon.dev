@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Navigation() {
@@ -9,50 +9,70 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
 
   const navItems = [
-    { href: '#home', label: 'Home', icon: 'fas fa-home' },
-    { href: '#about', label: 'About', icon: 'fas fa-user' },
-    { href: '#skills', label: 'Skills', icon: 'fas fa-code' },
-    { href: '#education', label: 'Education', icon: 'fas fa-graduation-cap' },
-    { href: '#projects', label: 'Projects', icon: 'fas fa-folder-open' },
+    { id: 'home', href: '#home', label: 'Home', icon: 'fas fa-home' },
+    { id: 'about', href: '#about', label: 'About', icon: 'fas fa-user' },
+    { id: 'skills', href: '#skills', label: 'Skills', icon: 'fas fa-code' },
+    { id: 'education', href: '#education', label: 'Education', icon: 'fas fa-graduation-cap' },
+    { id: 'projects', href: '#projects', label: 'Projects', icon: 'fas fa-folder-open' },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    const handleSectionChange = () => {
-      const sections = ['home', 'about', 'skills', 'education', 'projects'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (current) {
-        setActiveSection(current);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', handleSectionChange);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleSectionChange);
-    };
-  }, []);
-
-  const scrollToSection = (href) => {
+  const scrollToSection = useCallback((href) => {
     const element = document.getElementById(href.substring(1));
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          
+          // Section detection logic
+          const sections = navItems.map(item => item.id);
+          const scrollPosition = window.scrollY + 150; // Offset for better detection
+          
+          let currentSection = 'home'; // Default to home
+          
+          for (const sectionId of sections) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              const elementTop = window.scrollY + rect.top;
+              const elementBottom = elementTop + element.offsetHeight;
+              
+              // Check if we're in this section
+              if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                currentSection = sectionId;
+                break;
+              }
+            }
+          }
+          
+          // Update active section only if it changed
+          if (currentSection !== activeSection) {
+            setActiveSection(currentSection);
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initial check
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [activeSection, navItems]);
 
   return (
     <motion.nav
@@ -88,7 +108,7 @@ export default function Navigation() {
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-out border-none ${
-                  activeSection === item.href.substring(1)
+                  activeSection === item.id
                     ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30 backdrop-blur-sm'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
@@ -144,7 +164,7 @@ export default function Navigation() {
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
                 className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-500 ease-out ${
-                  activeSection === item.href.substring(1)
+                  activeSection === item.id
                     ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30 backdrop-blur-sm'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}

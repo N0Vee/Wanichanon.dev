@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { useMemo, useCallback } from 'react';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
 
-  const socialLinks = [
+  const socialLinks = useMemo(() => [
     {
       href: "https://github.com/N0Vee",
       icon: "fab fa-github",
@@ -30,21 +31,21 @@ export default function Footer() {
       label: "Email",
       color: "hover:text-emerald-400"
     }
-  ];
+  ], []);
 
-  const quickLinks = [
+  const quickLinks = useMemo(() => [
     { href: "#about", label: "About" },
     { href: "#skills", label: "Skills" },
     { href: "#education", label: "Education" },
     { href: "#projects", label: "Projects" }
-  ];
+  ], []);
 
-  const scrollToSection = (href) => {
+  const scrollToSection = useCallback((href) => {
     const element = document.getElementById(href.substring(1));
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10">
