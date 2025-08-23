@@ -21,12 +21,12 @@ export default function ProjectsSection() {
     },
     {
       id: 2,
-      title: "InkSpace Blog Platform",
+      title: "Wanichanon.blog",
       category: "Full-Stack",
-      image: "/images/projects_img/InkSpace.png",
-      github: "https://github.com/N0Vee/InkSpace",
-      tech: ["Next.js", "SCSS"],
-      description: "Sophisticated blog platform with content management through Editor.js and AI-powered topic generation using Gemini."
+      image: "/images/projects_img/WebBlog.png",
+      github: "https://github.com/N0Vee/Wanichanon.blog",
+      tech: ["Next.js", "TailwindCSS", "Framer Motion", "JavaScript"],
+      description: "Modern blog platform built with Next.js 14 (App Router), PayloadCMS, and a custom glassmorphism design system."
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ export default function ProjectsSection() {
       category: "Frontend",
       image: "/images/projects_img/WebPortfolio.png",
       github: "https://github.com/N0Vee/Wanichanon.dev",
-      tech: ["Next.js","TailwindCSS", "Framer Motion", "JavaScript"],
+      tech: ["Next.js", "TailwindCSS", "Framer Motion", "JavaScript"],
       description: "Responsive personal portfolio with clean UI design and smooth animations for enhanced visual experience."
     },
     {
@@ -52,15 +52,15 @@ export default function ProjectsSection() {
       category: "Frontend",
       image: "/images/projects_img/weatherforcast.png",
       github: "https://github.com/N0Vee/Weather-Forecast-Website",
-      tech: ["Next.js","JavaScript", "Weather API"],
+      tech: ["Next.js", "JavaScript", "Weather API"],
       description: "Real-time weather application with location-based forecasting and interactive weather data visualization."
     }
   ];
 
   const categories = ['All', 'Full-Stack', 'Frontend', 'Backend'];
 
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       id="projects"
       className="py-20 relative overflow-hidden"
@@ -120,11 +120,10 @@ export default function ProjectsSection() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  selectedCategory === category
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${selectedCategory === category
                     ? 'bg-gradient-to-r from-blue-500/30 to-cyan-500/30 text-white border border-white/20'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 {category}
               </button>
@@ -152,7 +151,7 @@ export default function ProjectsSection() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   {/* Overlay Actions */}
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <a
