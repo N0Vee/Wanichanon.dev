@@ -8,41 +8,33 @@ export default function EducationSection() {
   const sectionRef = useRef(null);
 
   const educationData = [
-    {
-      degree: "Bachelor's degree in IT, Software Engineering",
-      institution: "King Mongkut's University of Technology North Bangkok (KMUTNB)",
-      period: "2022 - Present",
-      description: "Focusing on software development, web technologies, and computer science fundamentals. Active in programming clubs and hackathons.",
-      icon: "fas fa-graduation-cap",
-      color: "from-blue-400 to-cyan-400"
-    },
-    {
-      degree: "Vocational degree in Information Technology",
-      institution: "SIAM BUSINESS ADMINISTRATION TECHNOLOGICAL COLLEGE (SBAC)",
-      period: "2019 - 2022",
-      description: "Specialized in mathematics and science subjects, building a strong foundation for technical studies.",
-      achievements: [
-        "Honor Roll Student",
-        "Mathematics Olympiad Participant",
-        "Science Fair Winner"
-      ],
-      icon: "fas fa-school",
-      color: "from-purple-400 to-pink-400"
-    },
-    {
-      degree: "Science and Mathematics program",
-      institution: "Rajavinit Bangkhen School",
-      period: "2017 - 2019",
-      description: "Specialized in mathematics and science subjects, building a strong foundation for technical studies.",
-      achievements: [
-        "Honor Roll Student",
-        "Mathematics Olympiad Participant",
-        "Science Fair Winner"
-      ],
-      icon: "fas fa-school",
-      color: "from-purple-400 to-pink-400"
-    }
-  ];
+  {
+    degree: "Bachelor's degree in IT, Software Engineering",
+    institution: "King Mongkut's University of Technology North Bangkok (KMUTNB)",
+    period: "2022 - Present",
+    description: "Focusing on IT with emphasis on web development, IoT, and networking. Gained more independence and explored new subjects.",
+    icon: "fas fa-graduation-cap",
+    color: "from-blue-400 to-cyan-400"
+  },
+  {
+    degree: "Vocational degree in Information Technology",
+    institution: "SIAM BUSINESS ADMINISTRATION TECHNOLOGICAL COLLEGE (SBAC)",
+    period: "2019 - 2022",
+    description: "Studied IT with focus on computer systems, basic networking, and some web development. Balanced technical and general education.",
+    icon: "fas fa-school",
+    color: "from-purple-400 to-pink-400"
+  },
+  {
+    degree: "Science and Mathematics program",
+    institution: "Rajavinit Bangkhen School",
+    period: "2017 - 2019",
+    description: "General education with some focus on science and mathematics.",
+    icon: "fas fa-school",
+    color: "from-green-400 to-yellow-400"
+  }
+];
+
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
