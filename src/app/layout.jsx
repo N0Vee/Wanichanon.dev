@@ -84,15 +84,15 @@ export default function RootLayout({ children }) {
             <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-purple-500/12 rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
             <div className="absolute bottom-40 right-1/3 w-36 h-36 bg-blue-400/12 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }}></div>
           </div>
-          
+
           {children}
-          <SpeedInsights />
         </div>
-        
-        <Script 
-          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" 
+
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
           strategy="lazyOnload" // Changed from afterInteractive to lazyOnload
         />
+        <SpeedInsights />
       </body>
     </html>
   );
