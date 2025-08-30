@@ -9,12 +9,29 @@ const geistSans = Geist({
   preload: true,
 });
 
+// Preload geistMono font for better performance
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: false,
+  preload: true, // Changed from false to true
 });
+
+// Split metadata into smaller exports for better readability
+export const openGraph = {
+  type: "website",
+  locale: "en_US",
+  url: "https://wanichanon.dev",
+  title: "Wanichanon.dev - Full-Stack Developer",
+  description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
+  siteName: "Wanichanon.dev",
+};
+
+export const twitter = {
+  card: "summary_large_image",
+  title: "Wanichanon.dev - Full-Stack Developer",
+  description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
+};
 
 export const metadata = {
   title: "Wanichanon.dev - Full-Stack Developer",
@@ -22,29 +39,23 @@ export const metadata = {
   keywords: "full-stack developer, React, Next.js, web development, portfolio, JavaScript, TypeScript",
   authors: [{ name: "Wanichanon Saelee" }],
   creator: "Wanichanon Saelee",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://wanichanon.dev",
-    title: "Wanichanon.dev - Full-Stack Developer",
-    description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
-    siteName: "Wanichanon.dev",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Wanichanon.dev - Full-Stack Developer",
-    description: "Portfolio of Wanichanon Saelee, a passionate full-stack developer specializing in React, Next.js, and modern web technologies.",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
+  icon: [
+    { rel: "icon", url: "/favicon.ico" },
+  ],
+  openGraph,
+  twitter,
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <title>Wanichanon.dev - Full-Stack Developer</title>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -78,7 +89,7 @@ export default function RootLayout({ children }) {
         
         <Script 
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" 
-          strategy="afterInteractive"
+          strategy="lazyOnload" // Changed from afterInteractive to lazyOnload
         />
       </body>
     </html>
