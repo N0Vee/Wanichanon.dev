@@ -36,7 +36,3 @@ Reach out for collaboration or questions:
 - **GitHub**: [N0Vee](https://github.com/N0Vee)  
 
 ---
-
-## 📄 License
-
-This project is **MIT licensed**. See [LICENSE](./LICENSE) for details.  
