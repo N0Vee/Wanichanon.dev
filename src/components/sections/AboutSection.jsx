@@ -42,7 +42,7 @@ export default function AboutSection() {
                 <div className="w-80 h-96 lg:w-96 lg:h-[480px] relative overflow-hidden rounded-2xl">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10 z-10" />
                   <Image
-                    src="/images/me.jpg"
+                    src="/images/Wanichanon.webp"
                     alt="Wanichanon Saelee"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
