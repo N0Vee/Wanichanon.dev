@@ -112,8 +112,8 @@ export default function ProjectsSection() {
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              viewport={{ once: true, }}
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.05 }}
               className="group"
             >
               <div className="glass-card rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden h-full">
