@@ -109,7 +109,7 @@ export default function HeroSection() {
                 <div className="absolute inset-4 glass-card rounded-full overflow-hidden border border-white/20 group-hover:border-white/30 transition-all duration-500">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10" />
                   <Image
-                    src="/images/me.jpg"
+                    src="/images/Wanichanon.webp"
                     alt="Wanichanon Saelee"
                     fill
                     priority
