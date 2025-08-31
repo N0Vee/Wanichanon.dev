@@ -1,37 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function AboutSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
     <section 
-      ref={sectionRef}
       id="about"
       className="min-h-screen py-20 relative overflow-hidden"
     >
@@ -39,7 +13,8 @@ export default function AboutSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -56,8 +31,9 @@ export default function AboutSection() {
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             className="flex justify-center lg:justify-start"
           >
             <div className="relative group">
@@ -71,6 +47,8 @@ export default function AboutSection() {
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -84,8 +62,9 @@ export default function AboutSection() {
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-8"
           >
             <div>
@@ -95,15 +74,15 @@ export default function AboutSection() {
               
               <div className="space-y-4 text-slate-400 text-lg leading-relaxed">
                 <p>
-                  I'm a passionate full-stack developer with a love for creating elegant, 
-                  user-centered digital experiences. My journey in technology began with 
-                  curiosity and has evolved into a career focused on building meaningful 
+                  I'm a passionate full-stack developer with a love for creating elegant,
+                  user-centered digital experiences. My journey in technology began with
+                  curiosity and has evolved into a career focused on building meaningful
                   solutions.
                 </p>
                 
                 <p>
-                  Currently specializing in modern web technologies including React, Next.js, 
-                  and Node.js, I enjoy the challenge of transforming complex problems into 
+                  Currently specializing in modern web technologies including React, Next.js,
+                  and Node.js, I enjoy the challenge of transforming complex problems into
                   simple, beautiful, and intuitive designs.
                 </p>
               </div>
@@ -112,15 +91,14 @@ export default function AboutSection() {
             {/* Skills Pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.25 }}
               className="space-y-4"
             >
               <h4 className="text-xl font-semibold text-white mb-4">Core Technologies</h4>
               <div className="flex flex-wrap gap-3">
-                {[
-                  "Next.js","React","TailwindCSS", "Node.js"
-                ].map((skill, index) => (
+                {["Next.js","React","TailwindCSS", "Node.js"].map((skill, index) => (
                   <span
                     key={index}
                     className="glass-card px-4 py-2 text-sm rounded-full border border-white/10 text-slate-300 hover:border-blue-400/30 transition-colors duration-300"
@@ -134,8 +112,9 @@ export default function AboutSection() {
             {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="flex items-center space-x-4"
             > 
               <motion.a

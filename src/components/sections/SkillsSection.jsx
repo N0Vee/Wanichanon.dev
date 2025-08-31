@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function SkillsSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const sectionRef = useRef(null);
 
   const skills = {
     "Frontend / Frameworks": ["HTML", "CSS", "JavaScript", "React", "Next.js", "TypeScript"],
@@ -20,54 +18,31 @@ export default function SkillsSection() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  // Precompute dots positions to prevent re-renders causing new randoms
+  const dots = useMemo(
+    () => Array.from({ length: 24 }).map((_, i) => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      delay: Math.random() * 2,
+      duration: 3 + Math.random() * 2,
+      key: i,
+    })),
+    []
+  );
 
   return (
-    <section 
-      ref={sectionRef}
-      id="skills"
-      className="py-20 relative overflow-hidden"
-    >
+    <section id="skills" className="py-20 relative overflow-hidden">
       {/* Animated Background Dots */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0">
-            {[...Array(30)].map((_, i) => (
+            {dots.map((d) => (
               <motion.div
-                key={i}
+                key={d.key}
                 className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-30"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
+                style={{ left: d.left, top: d.top }}
+                animate={{ y: [0, -20, 0], opacity: [0.3, 0.8, 0.3] }}
+                transition={{ duration: d.duration, repeat: Infinity, delay: d.delay }}
               />
             ))}
           </div>
@@ -78,7 +53,8 @@ export default function SkillsSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -99,8 +75,9 @@ export default function SkillsSection() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
               className="group h-full"
             >
               <div className="glass-card rounded-2xl border border-white/10 hover:border-blue-400/30 transition-all duration-300 h-full flex flex-col overflow-hidden">
@@ -116,11 +93,9 @@ export default function SkillsSection() {
                       <motion.span
                         key={skillIndex}
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
-                        transition={{ 
-                          duration: 0.3, 
-                          delay: 0.4 + index * 0.1 + skillIndex * 0.05 
-                        }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.3, delay: 0.2 + index * 0.1 + skillIndex * 0.05 }}
                         className="skill-tag glass-card px-4 py-2 rounded-full border border-blue-400/20 text-slate-300 hover:text-white hover:border-blue-400/50 hover:bg-blue-400/10 transition-all duration-300 cursor-default hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 text-sm"
                       >
                         {skill}

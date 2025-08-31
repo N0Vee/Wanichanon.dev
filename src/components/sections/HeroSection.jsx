@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import TypeWriter from '@/utils/TypeWriter';
@@ -13,36 +12,19 @@ const socialLinks = [
 ];
 
 export default function HeroSection() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  const handleResumeClick = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      window.open('/images/Resume(Eng).pdf', '_blank');
-    }
-  }, []);
 
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center justify-center">
       <div className="relative z-10 container mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <div className="space-y-6">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="inline-block"
-              >
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-block">
                 <span className="glass-card px-4 py-2 rounded-full text-sm font-medium text-slate-300 border border-white/10">
                   👋 Hello, I'm
                 </span>
@@ -51,21 +33,17 @@ export default function HeroSection() {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-                className="text-6xl md:text-8xl font-bold leading-tight"
-              >
-                <span className="gradient-text">
-                  Wanichanon
-                </span>
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-6xl md:text-8xl font-bold leading-tight">
+                <span className="gradient-text">Wanichanon</span>
                 <br />
               </motion.h1>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.8 }}
-                className="text-2xl md:text-3xl text-slate-400"
-              >
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-2xl md:text-3xl text-slate-400">
                 <TypeWriter />
               </motion.div>
             </div>
@@ -73,8 +51,9 @@ export default function HeroSection() {
             {/* Glassmorphism Quote Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="relative group max-w-lg"
             >
               <div className="glass-card p-8 rounded-2xl border border-white/10 group-hover:border-white/20 transition-all duration-500">
@@ -91,17 +70,16 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* CTA and Social Links */}
+            {/* Social Links */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.8 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
               className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-8"
             >
-
-              {/* Social Links */}
               <div className="flex items-center space-x-4">
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
@@ -117,16 +95,15 @@ export default function HeroSection() {
                 ))}
               </div>
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Minimal Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="flex justify-center lg:justify-end"
-          >
-            <div className="relative group">
+          {/* Hero Profile Image (LCP) */}
+          <div className="flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: [0.95, 1.05, 1]  }}
+              transition={{ duration: 0.3, delay: 1.0, ease: "easeOut" }}
+              className="relative group">
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
                 {/* Glassmorphism frame */}
                 <div className="absolute inset-4 glass-card rounded-full overflow-hidden border border-white/20 group-hover:border-white/30 transition-all duration-500">
@@ -135,6 +112,8 @@ export default function HeroSection() {
                     src="/images/me.jpg"
                     alt="Wanichanon Saelee"
                     fill
+                    priority
+                    fetchPriority="high"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -145,16 +124,17 @@ export default function HeroSection() {
                 <div className="absolute bottom-4 left-0 w-12 h-12 border border-cyan-400/30 rounded-full animate-glow" style={{ animationDelay: '1s' }} />
                 <div className="absolute top-1/3 left-0 w-8 h-8 border border-purple-400/30 rounded-full animate-glow" style={{ animationDelay: '2s' }} />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <div className="glass-card p-3 rounded-full border border-white/10 group cursor-pointer">
