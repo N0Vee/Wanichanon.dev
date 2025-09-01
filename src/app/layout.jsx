@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import MouseFollowingCircle from '@/components/MouseFollowingCircle';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,6 +86,9 @@ export default function RootLayout({ children }) {
             <div className="absolute bottom-40 right-1/3 w-36 h-36 bg-blue-400/12 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }}></div>
           </div>
 
+          {/* Mouse Following Circle Animation */}
+          <MouseFollowingCircle />
+          
           {children}
         </div>
 
