@@ -132,16 +132,15 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 1.2, type: "spring", stiffness: 300 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
-        <div className="glass-card p-3 rounded-full border border-white/10 group cursor-pointer">
+        <div className="group cursor-pointer">
           <motion.i
             className="fas fa-chevron-down text-slate-400 group-hover:text-white transition-colors duration-300"
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           />
         </div>
       </motion.div>

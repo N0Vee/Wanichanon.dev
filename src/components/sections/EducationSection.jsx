@@ -77,7 +77,7 @@ export default function EducationSection() {
                   <div className="glass-card p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300">
                     {/* Period Badge */}
                     <div className="inline-block mb-4">
-                      <span className={`glass-card px-4 py-2 text-sm rounded-full border border-white/10 bg-gradient-to-r ${edu.color} bg-clip-text text-white font-semibold`}>
+                      <span className={`inline-flex items-center px-4 py-2 text-sm rounded-full text-white font-semibold border border-white/20 backdrop-blur-sm bg-gradient-to-r ${edu.color} bg-opacity-30 shadow-lg`}>
                         {edu.period}
                       </span>
                     </div>
