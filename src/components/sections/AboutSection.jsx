@@ -7,45 +7,45 @@ export default function AboutSection() {
   return (
     <section 
       id="about"
-      className="min-h-screen py-20 relative overflow-hidden"
+      className="min-h-screen py-16 sm:py-20 relative overflow-hidden"
     >
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
             About{' '}
             <span className="gradient-text">
               Me
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full" />
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex justify-center lg:justify-start"
+            className="flex justify-center order-first lg:order-first"
           >
             <div className="relative group">
               {/* Glassmorphism container */}
-              <div className="glass-card p-6 rounded-3xl border border-white/10">
-                <div className="w-80 h-96 lg:w-96 lg:h-[480px] relative overflow-hidden rounded-2xl">
+              <div className="glass-card p-4 sm:p-6 rounded-3xl border border-white/10">
+                <div className="w-64 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[480px] relative overflow-hidden rounded-2xl">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10 z-10" />
                   <Image
                     src="/images/Wanichanon.webp"
                     alt="Wanichanon Saelee"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 40vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     decoding="async"
@@ -54,8 +54,8 @@ export default function AboutSection() {
               </div>
               
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400/20 rounded-full animate-glow" />
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-cyan-400/20 rounded-full animate-glow" style={{ animationDelay: '1s' }} />
+              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 bg-blue-400/20 rounded-full animate-glow" />
+              <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 w-4 h-4 sm:w-6 sm:h-6 bg-cyan-400/20 rounded-full animate-glow" style={{ animationDelay: '1s' }} />
             </div>
           </motion.div>
 
@@ -65,14 +65,14 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8 text-center lg:text-left mt-8 lg:mt-0"
           >
             <div>
-              <h3 className="text-3xl font-bold text-white mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">
                 Full Stack Developer
               </h3>
               
-              <div className="space-y-4 text-slate-400 text-lg leading-relaxed">
+              <div className="space-y-4 text-slate-400 text-base sm:text-lg leading-relaxed">
                 <p>
                   I'm a passionate full-stack developer with a love for creating elegant,
                   user-centered digital experiences. My journey in technology began with
@@ -80,7 +80,7 @@ export default function AboutSection() {
                   solutions.
                 </p>
                 
-                <p>
+                <p className="hidden sm:block">
                   Currently specializing in modern web technologies including React, Next.js,
                   and Node.js, I enjoy the challenge of transforming complex problems into
                   simple, beautiful, and intuitive designs.

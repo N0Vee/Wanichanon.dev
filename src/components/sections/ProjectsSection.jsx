@@ -62,18 +62,18 @@ export default function ProjectsSection() {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="projects" className="py-16 sm:py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            <span className="gradient-text">Projects</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+            <span className="gradient-text">Selected Projects</span>
           </h2>
         </motion.div>
 
@@ -83,14 +83,14 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-8 sm:mb-12 overflow-x-auto pb-2"
         >
-          <div className="glass-card p-2 rounded-2xl border border-white/10 inline-flex space-x-2">
+          <div className="glass-card p-1 sm:p-2 rounded-2xl border border-white/10 inline-flex space-x-1 sm:space-x-2 min-w-max">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border-none ${selectedCategory === category
+                className={`px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-medium transition-all duration-300 border-none text-sm sm:text-base whitespace-nowrap ${selectedCategory === category
                     ? 'bg-gradient-to-r from-blue-500/30 to-cyan-500/30 text-white border border-white/20'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
@@ -102,7 +102,7 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
