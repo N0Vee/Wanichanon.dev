@@ -85,8 +85,8 @@ export default function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`glass-card w-12 h-12 rounded-full flex items-center justify-center text-slate-400 border border-white/10 hover:border-white/20 transition-all duration-300 ${social.color}`}
-                    whileHover={{ y: -2, scale: 1.1 }}
+                    className={`glass-card w-12 h-12 rounded-full flex items-center justify-center text-slate-400 border border-white/10 hover:border-white/20  ${social.color}`}
+                    whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label={social.label}
                   >
@@ -101,7 +101,7 @@ export default function HeroSection() {
           <div className="flex justify-center lg:justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: [0.95, 1.05, 1]  }}
+              animate={{ opacity: 1, scale: [0.95, 1.05, 1] }}
               transition={{ duration: 0.3, delay: 1.0, ease: "easeOut" }}
               className="relative group">
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
@@ -136,13 +136,12 @@ export default function HeroSection() {
         transition={{ duration: 0.3, delay: 1.2, type: "spring", stiffness: 300 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
-        <div className="group cursor-pointer">
-          <motion.i
-            className="fas fa-chevron-down text-slate-400 group-hover:text-white transition-colors duration-300"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          />
-        </div>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, repeatType: "loop", duration: 1.5, ease: "easeInOut" }}
+          className="group cursor-pointer">
+          <i className="fas fa-chevron-down text-slate-400 group-hover:text-white transition-colors duration-300 inline-block" />
+        </motion.div>
       </motion.div>
     </section>
   );

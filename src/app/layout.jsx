@@ -68,14 +68,6 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
-        style={{
-          background: `
-            linear-gradient(135deg, #141428 0%, #1e1b4b 25%, #3730a3 50%, #1e1b4b 75%, #141428 100%),
-            radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.12) 0%, transparent 50%)
-          `,
-          backgroundAttachment: 'fixed'
-        }}
       >
         <div className="min-h-screen text-slate-100 relative">
           {/* Glassmorphism overlay pattern */}

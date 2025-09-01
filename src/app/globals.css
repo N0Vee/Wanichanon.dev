@@ -15,32 +15,12 @@
 }
 
 body {
-  /* Modern layered background with animated gradients */
+  /* Simple gradient background without animation */
   background: 
-    /* Primary animated gradient */
-    linear-gradient(135deg, 
-      rgba(15, 23, 42, 0.95) 0%,      /* Dark slate */
-      rgba(30, 41, 59, 0.9) 20%,      /* Slate 800 */
-      rgba(51, 65, 85, 0.85) 40%,     /* Slate 700 */
-      rgba(71, 85, 105, 0.8) 60%,     /* Slate 600 */
-      rgba(59, 130, 246, 0.15) 80%,   /* Blue accent */
-      rgba(6, 182, 212, 0.1) 100%     /* Cyan accent */
-    ),
-    /* Secondary overlay gradient */
-    radial-gradient(ellipse at top left, 
-      rgba(59, 130, 246, 0.1) 0%, 
-      transparent 50%
-    ),
-    radial-gradient(ellipse at bottom right, 
-      rgba(6, 182, 212, 0.08) 0%, 
-      transparent 50%
-    ),
-    /* Base solid color */
-    var(--background);
-  
-  /* Subtle animation */
-  background-size: 400% 400%, 100% 100%, 100% 100%, 100% 100%;
-  animation: subtleGradientShift 20s ease-in-out infinite;
+    linear-gradient(135deg, #141428 0%, #1e1b4b 25%, #3730a3 50%, #1e1b4b 75%, #141428 100%),
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+  background-attachment: scroll;
   
   color: var(--foreground);
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -90,21 +70,6 @@ body {
 }
 
 /* Optimized animations with GPU acceleration */
-@keyframes subtleGradientShift {
-  0%, 100% {
-    background-position: 0% 50%, 0% 0%, 100% 100%, 0% 0%;
-  }
-  25% {
-    background-position: 100% 50%, 10% 10%, 90% 90%, 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%, 20% 20%, 80% 80%, 0% 0%;
-  }
-  75% {
-    background-position: 0% 100%, 30% 30%, 70% 70%, 0% 0%;
-  }
-}
-
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -243,20 +208,15 @@ body {
   }
 }
 
-/* Mobile optimizations for new background */
+/* Mobile optimizations */
 @media (max-width: 768px) {
   body {
-    /* Simplified background for mobile performance */
+    /* Same layered gradient for mobile */
     background: 
-      linear-gradient(135deg, 
-        rgba(15, 23, 42, 0.98) 0%,
-        rgba(30, 41, 59, 0.95) 30%,
-        rgba(51, 65, 85, 0.9) 60%,
-        rgba(59, 130, 246, 0.1) 100%
-      ),
-      var(--background);
-    background-size: 200% 200%, 100% 100%;
-    animation: mobileGradientShift 30s ease-in-out infinite;
+      linear-gradient(135deg, #141428 0%, #1e1b4b 25%, #3730a3 50%, #1e1b4b 75%, #141428 100%),
+      radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+    background-attachment: fixed;
   }
   
   /* Mobile glass effects - lighter */
@@ -269,43 +229,14 @@ body {
   }
 }
 
-/* Mobile gradient animation - lighter */
-@keyframes mobileGradientShift {
-  0%, 100% {
-    background-position: 0% 50%, 0% 0%;
-  }
-  50% {
-    background-position: 100% 50%, 0% 0%;
-  }
-}
-
 /* High-end device optimizations */
 @media (min-width: 1200px) and (min-resolution: 1.5dppx) {
   body {
-    /* Enhanced background for high-res displays */
+    /* Same layered gradient for high-res displays */
     background: 
-      linear-gradient(135deg, 
-        rgba(15, 23, 42, 0.95) 0%,
-        rgba(30, 41, 59, 0.9) 15%,
-        rgba(51, 65, 85, 0.85) 30%,
-        rgba(71, 85, 105, 0.8) 45%,
-        rgba(100, 116, 139, 0.75) 60%,
-        rgba(59, 130, 246, 0.2) 80%,
-        rgba(6, 182, 212, 0.15) 95%,
-        rgba(139, 92, 246, 0.1) 100%
-      ),
-      radial-gradient(ellipse at top left, 
-        rgba(59, 130, 246, 0.15) 0%, 
-        transparent 60%
-      ),
-      radial-gradient(ellipse at bottom right, 
-        rgba(6, 182, 212, 0.12) 0%, 
-        transparent 60%
-      ),
-      radial-gradient(ellipse at center, 
-        rgba(139, 92, 246, 0.08) 0%, 
-        transparent 70%
-      ),
-      var(--background);
+      linear-gradient(135deg, #141428 0%, #1e1b4b 25%, #3730a3 50%, #1e1b4b 75%, #141428 100%),
+      radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+    background-attachment: fixed;
   }
 }
