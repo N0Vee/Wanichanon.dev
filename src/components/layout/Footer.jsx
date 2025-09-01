@@ -72,8 +72,8 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`glass-card w-12 h-12 rounded-full flex items-center justify-center text-slate-400 border border-white/10 hover:border-white/20 transition-all duration-300 ${social.color}`}
-                    whileHover={{ y: -2, scale: 1.1 }}
+                    className={`glass-card w-12 h-12 rounded-full flex items-center justify-center text-slate-400 border border-white/10 hover:border-white/20 ${social.color}`}
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label={social.label}
                   >

@@ -73,7 +73,7 @@ export default function ProjectsSection() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
-            <span className="gradient-text">Selected Projects</span>
+            Selected <span className="gradient-text">Projects</span>
           </h2>
         </motion.div>
 
@@ -183,26 +183,7 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <h3 className="text-2xl font-bold text-white mb-6">Interested in working together?</h3>
-          <motion.a
-            href="mailto:wanichanon.work@gmail.com"
-            className="inline-flex items-center space-x-3 glass-card px-8 py-4 rounded-full border border-white/20 hover:border-blue-400/50 text-white font-medium transition-all duration-300 group"
-            whileHover={{ y: -2, scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10">Get in touch</span>
-            <i className="fas fa-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
-          </motion.a>
-        </motion.div>
+        
       </div>
     </section>
   );
