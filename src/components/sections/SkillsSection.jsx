@@ -7,12 +7,16 @@ export default function SkillsSection() {
   const [mounted, setMounted] = useState(false);
 
   const skills = {
-    "Frontend / Frameworks": ["HTML", "CSS", "JavaScript", "React", "Next.js", "TypeScript"],
-    "UI Libraries": ["Bulma", "Bootstrap", "TailwindCSS", "Framer Motion"],
+    "Frontend": ["HTML", "JavaScript", "TypeScript", "React", "Next.js"],
+    "UI / Styling": ["CSS", "TailwindCSS", "Bootstrap", "Bulma", "Framer Motion"],
     "Backend": ["Node.js", "Express", "Bun", "Elysia.js", "Python"],
-    "Databases": ["MySQL", "PostgreSQL", "MongoDB", "Firebase"],
-    "Tools & Software": ["Git", "Docker", "Postman", "VS Code", "Figma"],
+    "Databases": ["MySQL", "PostgreSQL", "MongoDB"],
+    "BaaS / CMS": ["Firebase", "Supabase", "PayloadCMS"],
+    "DevOps / Tools": ["Git", "Docker", "Postman", "VS Code"],
+    "Design": ["Figma"],
   };
+
+
 
   useEffect(() => {
     setMounted(true);
@@ -59,14 +63,11 @@ export default function SkillsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            My{' '}
+            Technical {' '}
             <span className="gradient-text relative">
               Skills
             </span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Technologies and tools I use
-          </p>
         </motion.div>
 
         {/* Skills Grid */}
@@ -96,7 +97,7 @@ export default function SkillsSection() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.3, delay: 0.2 + index * 0.1 + skillIndex * 0.05 }}
-                        className="skill-tag glass-card px-4 py-2 rounded-full border border-blue-400/20 text-slate-300 hover:text-white hover:border-blue-400/50 hover:bg-blue-400/10 transition-all duration-300 cursor-default hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 text-sm"
+                        className="skill-tag glass-card px-4 py-2 rounded-full border border-blue-400/20 text-slate-300 hover:text-white hover:border-blue-400/50 hover:bg-blue-400/10 duration-300 cursor-default hover:shadow-lg hover:shadow-blue-400/20 text-sm"
                       >
                         {skill}
                       </motion.span>

@@ -42,12 +42,8 @@ export default function EducationSection() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            My <span className="gradient-text">Education</span>
+            <span className="gradient-text">Education</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Academic journey and continuous learning experiences
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full mt-6" />
         </motion.div>
 
         {/* Education Timeline */}

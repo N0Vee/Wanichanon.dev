@@ -73,12 +73,8 @@ export default function ProjectsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            My <span className="gradient-text">Projects</span>
+            <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-8">
-            A collection of projects that showcase my skills and passion for development
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full" />
         </motion.div>
 
         {/* Category Filter */}
