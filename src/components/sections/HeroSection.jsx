@@ -89,8 +89,7 @@ export default function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`glass-card w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-slate-400 border border-white/10 hover:border-white/20 ${social.color} transition-all duration-300`}
-                    whileHover={{ y: -5, scale: 1.1 }}
+                    className={`glass-card w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-slate-400 border border-white/10 hover:border-white/20 ${social.color} hover:-translate-y-2 transition-all duration-300`}
                     whileTap={{ scale: 0.9 }}
                     aria-label={social.label}
                   >
