@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import MouseFollowingCircle from "@/components/MouseFollowingCircle";
+import MouseFollowingCircle from "@/components/ui/MouseFollowingCircle";
 import AllStructuredData from "@/components/seo/StructuredData";
 
 const geistSans = Geist({

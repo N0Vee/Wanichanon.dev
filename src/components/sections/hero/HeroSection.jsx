@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import TypeWriter from '@/utils/TypeWriter';
+import TypeWriter from '@/components/ui/TypeWriter';
 
 const socialLinks = [
   { href: "https://github.com/N0Vee", icon: "fab fa-github", label: "GitHub", color: "hover:text-gray-400" },

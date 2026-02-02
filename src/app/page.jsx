@@ -1,10 +1,10 @@
 import Navigation from "@/components/layout/Navigation";
-import HeroSection from "@/components/sections/HeroSection";
-import AboutSection from "@/components/sections/AboutSection";
-import SkillsSection from "@/components/sections/SkillsSection";
-import EducationSection from "@/components/sections/EducationSection";
-import ProjectsSection from "@/components/sections/ProjectsSection";
-import FAQSection from "@/components/sections/FAQSection";
+import HeroSection from "@/components/sections/hero/HeroSection";
+import AboutSection from "@/components/sections/about/AboutSection";
+import SkillsSection from "@/components/sections/skills/SkillsSection";
+import EducationSection from "@/components/sections/education/EducationSection";
+import ProjectsSection from "@/components/sections/projects/ProjectsSection";
+import FAQSection from "@/components/sections/faq/FAQSection";
 import Footer from "@/components/layout/Footer";
 
 // Page-specific metadata (extends layout metadata)

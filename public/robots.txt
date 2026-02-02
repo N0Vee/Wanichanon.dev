@@ -6,6 +6,11 @@ Allow: /
 # Sitemap location
 Sitemap: https://wanichanon.dev/sitemap.xml
 
+# AI/LLM Information Files
+# These files provide structured information for AI systems
+LLMs-txt: https://wanichanon.dev/llms.txt
+AI-txt: https://wanichanon.dev/ai.txt
+
 # Crawl rate
 Crawl-delay: 1
 

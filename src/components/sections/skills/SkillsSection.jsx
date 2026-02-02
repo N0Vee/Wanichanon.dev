@@ -2,19 +2,10 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { skillsData } from '@/data/skills';
 
 export default function SkillsSection() {
   const [mounted, setMounted] = useState(false);
-
-  const skills = {
-    "Frontend": ["HTML", "JavaScript", "TypeScript", "React", "Next.js"],
-    "UI / Styling": ["CSS", "TailwindCSS", "Bootstrap", "Bulma", "Framer Motion"],
-    "Backend": ["Node.js", "Express", "Bun", "Elysia.js", "Python"],
-    "Databases": ["MySQL", "PostgreSQL", "MongoDB"],
-    "BaaS / CMS": ["Firebase", "Supabase", "PayloadCMS"],
-    "DevOps / Tools": ["Git", "Docker", "Postman", "VS Code"],
-    "Design": ["Figma"],
-  };
 
 
 
@@ -72,7 +63,7 @@ export default function SkillsSection() {
 
         {/* Skills Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
-          {Object.entries(skills).map(([category, skillList], index) => (
+          {Object.entries(skillsData).map(([category, skillList], index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
