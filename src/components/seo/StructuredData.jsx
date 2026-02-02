@@ -1,6 +1,7 @@
-"use client";
-
-import Script from "next/script";
+/**
+ * Structured Data Components - Server-Side Rendered
+ * All JSON-LD schemas are now rendered on the server for optimal SEO
+ */
 
 /**
  * Person Schema - Tells search engines who you are
@@ -57,8 +58,7 @@ export function PersonSchema() {
   };
 
   return (
-    <Script
-      id="person-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(personData) }}
     />
@@ -97,8 +97,7 @@ export function WebsiteSchema() {
   };
 
   return (
-    <Script
-      id="website-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteData) }}
     />
@@ -109,7 +108,7 @@ export function WebsiteSchema() {
  * WebPage Schema - Describes the current page
  * Helps search engines understand page content
  */
-export function WebPageSchema({ 
+export function WebPageSchema({
   title = "Wanichanon.dev - Full-Stack Developer",
   description = "Portfolio of Wanichanon Saelee, a passionate full-stack developer.",
   path = "/"
@@ -140,8 +139,7 @@ export function WebPageSchema({
   };
 
   return (
-    <Script
-      id="webpage-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(pageData) }}
     />
@@ -168,8 +166,7 @@ export function BreadcrumbSchema({ path = "/" }) {
   };
 
   return (
-    <Script
-      id="breadcrumb-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
     />
@@ -282,8 +279,7 @@ export function ProjectsSchema() {
   };
 
   return (
-    <Script
-      id="projects-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsData) }}
     />
@@ -344,8 +340,7 @@ export function FAQSchema() {
   };
 
   return (
-    <Script
-      id="faq-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
     />
@@ -388,8 +383,7 @@ export function ProfessionalServiceSchema() {
   };
 
   return (
-    <Script
-      id="service-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceData) }}
     />
@@ -398,6 +392,7 @@ export function ProfessionalServiceSchema() {
 
 /**
  * Aggregate all structured data components
+ * Now rendered server-side for optimal SEO
  */
 export default function AllStructuredData() {
   return (

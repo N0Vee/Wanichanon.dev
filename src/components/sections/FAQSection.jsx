@@ -1,8 +1,9 @@
-"use client";
+import FAQItemClient from "./FAQItemClient";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-
+/**
+ * FAQ Data - Server-side rendered for SEO
+ * This content is in the initial HTML that search engines see
+ */
 const faqs = [
   {
     question: "Who is Wanichanon Saelee?",
@@ -41,61 +42,10 @@ const faqs = [
   },
 ];
 
-function FAQItem({ question, answer, index }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="border-b border-white/10 last:border-0"
-      itemScope
-      itemProp="mainEntity"
-      itemType="https://schema.org/Question"
-    >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 rounded-lg"
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${index}`}
-      >
-        <h3
-          className="text-lg sm:text-xl font-semibold text-white group-hover:text-blue-400 transition-colors duration-300 pr-4"
-          itemProp="name"
-        >
-          {question}
-        </h3>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="flex-shrink-0"
-        >
-          <i className="fas fa-chevron-down text-slate-400 group-hover:text-blue-400 transition-colors duration-300" />
-        </motion.div>
-      </button>
-      <motion.div
-        id={`faq-answer-${index}`}
-        initial={false}
-        animate={{
-          height: isOpen ? "auto" : 0,
-          opacity: isOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="overflow-hidden"
-        itemScope
-        itemProp="acceptedAnswer"
-        itemType="https://schema.org/Answer"
-      >
-        <div className="pb-6" itemProp="text">
-          <p className="text-slate-400 text-base leading-relaxed">{answer}</p>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
+/**
+ * FAQ Section - Server Component
+ * Static content is SSR, only accordion interaction is client-side
+ */
 export default function FAQSection() {
   return (
     <section
@@ -110,14 +60,8 @@ export default function FAQSection() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16"
-        >
+        {/* Header - Static SSR content */}
+        <div className="text-center mb-12 sm:mb-16">
           <h2
             id="faq-heading"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6"
@@ -129,9 +73,9 @@ export default function FAQSection() {
             Quick answers to common questions. Can&apos;t find what you&apos;re
             looking for? Feel free to reach out directly.
           </p>
-        </motion.div>
+        </div>
 
-        {/* FAQ List */}
+        {/* FAQ List with Schema.org microdata */}
         <div className="max-w-3xl mx-auto">
           <div
             className="glass-card rounded-2xl border border-white/10 p-6 sm:p-8"
@@ -139,7 +83,7 @@ export default function FAQSection() {
             itemType="https://schema.org/FAQPage"
           >
             {faqs.map((faq, index) => (
-              <FAQItem
+              <FAQItemClient
                 key={index}
                 question={faq.question}
                 answer={faq.answer}
@@ -149,14 +93,8 @@ export default function FAQSection() {
           </div>
         </div>
 
-        {/* Contact CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-12"
-        >
+        {/* Contact CTA - Static SSR content */}
+        <div className="text-center mt-12">
           <p className="text-slate-400 mb-4">
             Still have questions? I&apos;d love to hear from you.
           </p>
@@ -167,7 +105,7 @@ export default function FAQSection() {
             <i className="fas fa-envelope" />
             <span>Send me an email</span>
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
