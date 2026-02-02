@@ -1,0 +1,14 @@
+# robots.txt for wanichanon.dev
+# Allow all search engines to crawl all pages
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://wanichanon.dev/sitemap.xml
+
+# Crawl rate
+Crawl-delay: 1
+
+# Block specific paths (if needed in future)
+# Disallow: /admin/
+# Disallow: /api/
